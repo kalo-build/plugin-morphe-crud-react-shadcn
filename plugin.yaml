@@ -1,0 +1,34 @@
+name: "@kalo-build/plugin-morphe-crud-react-shadcn"
+displayName: "Morphe CRUD React shadcn/ui"
+description: "Generates React form, table, and detail component shells from Morphe model definitions. Thin template layer — all HTTP, types, validation, and casing conversion are handled by upstream plugins."
+version: "1.0.0"
+
+input:
+  format: "KA:MO1:YAML1"
+  description: "Morphe YAML schema files"
+  suggestedStore:
+    name: "KA_MO_YAML"
+    type: "localFileSystem"
+    path: "./morphe"
+
+output:
+  format: "KA:MO1:REACT1"
+  description: "Generated React component files (.tsx)"
+  suggestedStore:
+    name: "KA_REACT_COMPONENTS"
+    type: "localFileSystem"
+    path: "./generated/components"
+
+configSchema:
+  tsTypesImportPath:
+    type: string
+    description: "Base import path for TypeScript type definitions from plugin-morphe-ts-types."
+    required: true
+  zodSchemasImportPath:
+    type: string
+    description: "Base import path for Zod schemas from plugin-morphe-zod-types."
+    required: true
+  excludeModels:
+    type: array
+    items: { type: string }
+    description: "Model names to skip during generation."
